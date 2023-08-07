@@ -168,10 +168,16 @@ function! gen_tags#gtags#init() abort
     let g:gen_tags#gtags_default_map = 1
   endif
 
+  if !exists('g:gen_tags#enable_cscopeprg')
+    let g:gen_tags#enable_cscopeprg = 1
+  endif
+
   call s:gtags_set_env()
 
-  set cscopetag
-  set cscopeprg=gtags-cscope
+  if g:gen_tags#enable_cscopeprg == 1
+    set cscopetag
+    set cscopeprg=gtags-cscope
+  endif
 
   set nocscoperelative
 
